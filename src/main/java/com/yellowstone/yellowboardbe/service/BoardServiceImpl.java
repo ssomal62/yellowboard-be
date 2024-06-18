@@ -37,7 +37,11 @@ public class BoardServiceImpl implements BoardService {
             if(resultSet == null) return GetBoardResponseDto.noExistBoard(resultSet, imageEntities);
 
             imageEntities = imageRepository.findByBoardNumber(boardNumber);
-            
+
+            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            boardEntity.increaseViewCount();
+            boardRepository.save(boardEntity);
+
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();

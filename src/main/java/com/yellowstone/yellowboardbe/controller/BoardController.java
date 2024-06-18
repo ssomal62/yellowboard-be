@@ -1,10 +1,8 @@
 package com.yellowstone.yellowboardbe.controller;
 
 import com.yellowstone.yellowboardbe.dto.request.board.PostBoardRequestDto;
-import com.yellowstone.yellowboardbe.dto.response.board.GetBoardResponseDto;
-import com.yellowstone.yellowboardbe.dto.response.board.GetFavoriteListResponseDto;
-import com.yellowstone.yellowboardbe.dto.response.board.PostBoardResponseDto;
-import com.yellowstone.yellowboardbe.dto.response.board.PutFavoriteResponseDto;
+import com.yellowstone.yellowboardbe.dto.request.board.PostCommentRequestDto;
+import com.yellowstone.yellowboardbe.dto.response.board.*;
 import com.yellowstone.yellowboardbe.service.impl.BoardService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +38,16 @@ public class BoardController {
             @AuthenticationPrincipal String email
             ) {
         ResponseEntity<? super PostBoardResponseDto> response = boardService.postBoard(requestBody, email);
+        return response;
+    }
+
+    @PostMapping("/{boardNumber}/comment")
+    public ResponseEntity<? super PostCommentResponseDto> postCommnet(
+            @RequestBody @Valid PostCommentRequestDto requestBody,
+            @PathVariable("boardNumber") Integer boardNumber,
+            @AuthenticationPrincipal String email
+            ) {
+        ResponseEntity<? super PostCommentResponseDto> response = boardService.postComment(requestBody, boardNumber, email);
         return response;
     }
 

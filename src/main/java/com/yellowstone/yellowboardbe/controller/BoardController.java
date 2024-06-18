@@ -2,6 +2,7 @@ package com.yellowstone.yellowboardbe.controller;
 
 import com.yellowstone.yellowboardbe.dto.request.board.PostBoardRequestDto;
 import com.yellowstone.yellowboardbe.dto.response.board.GetBoardResponseDto;
+import com.yellowstone.yellowboardbe.dto.response.board.GetFavoriteListResponseDto;
 import com.yellowstone.yellowboardbe.dto.response.board.PostBoardResponseDto;
 import com.yellowstone.yellowboardbe.dto.response.board.PutFavoriteResponseDto;
 import com.yellowstone.yellowboardbe.service.impl.BoardService;
@@ -23,6 +24,14 @@ public class BoardController {
             @PathVariable("boardNumber") Integer boardNumber) {
         ResponseEntity<? super GetBoardResponseDto> reponse = boardService.getBoard(boardNumber);
         return reponse;
+    }
+
+    @GetMapping("/{boardNumber}/favorite-list")
+    public ResponseEntity<? super GetFavoriteListResponseDto> getFavoriteList(
+            @PathVariable("boardNumber") Integer boardNumber
+    ) {
+        ResponseEntity<? super GetFavoriteListResponseDto> response = boardService.getFavoriteList(boardNumber);
+        return response;
     }
 
     @PostMapping("")

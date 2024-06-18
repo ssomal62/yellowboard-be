@@ -10,6 +10,7 @@ import com.yellowstone.yellowboardbe.entity.FavoriteEntity;
 import com.yellowstone.yellowboardbe.entity.ImageEntity;
 import com.yellowstone.yellowboardbe.repository.*;
 import com.yellowstone.yellowboardbe.repository.resultSet.GetBoardResultSet;
+import com.yellowstone.yellowboardbe.repository.resultSet.GetCommentListResultSet;
 import com.yellowstone.yellowboardbe.repository.resultSet.GetFavoriteListResultSet;
 import com.yellowstone.yellowboardbe.service.impl.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -66,6 +67,22 @@ public class BoardServiceImpl implements BoardService {
             ResponseDto.databaseError();
         }
         return GetFavoriteListResponseDto.success(resultSets);
+    }
+
+    @Override
+    public ResponseEntity<? super GetCommentListResponseDto> getComment(Integer boardNumber) {
+
+        List<GetCommentListResultSet> resultSets  = new ArrayList<>();
+        try {
+            boolean existedBoard = boardRepository.existsByBoardNumber(boardNumber);
+            if(!existedBoard) return GetCommentListResponseDto.noExistBoard();
+
+            resultSets = commentRepository.getCommentList(boardNumber);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            ResponseDto.databaseError();
+        }
+        return GetCommentListResponseDto.success(resultSets);
     }
 
     @Override

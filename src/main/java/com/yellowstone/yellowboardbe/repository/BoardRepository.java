@@ -12,6 +12,8 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Integer> {
 
     BoardEntity findByBoardNumber(Integer boardNumber);
 
+    boolean existsByBoardNumber(Integer boardNumber);
+
     @Query(value =
             "SELECT " +
             "B.board_number AS boardNumber, " +
@@ -28,5 +30,4 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Integer> {
             nativeQuery = true
     )
     GetBoardResultSet getBoard(Integer boardNumber);
-
 }

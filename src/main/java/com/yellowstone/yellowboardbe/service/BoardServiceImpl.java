@@ -3,6 +3,7 @@ package com.yellowstone.yellowboardbe.service;
 import com.yellowstone.yellowboardbe.dto.ResponseDto;
 import com.yellowstone.yellowboardbe.dto.request.board.PostBoardRequestDto;
 import com.yellowstone.yellowboardbe.dto.response.board.GetBoardResponseDto;
+import com.yellowstone.yellowboardbe.dto.response.board.GetFavoriteListResponseDto;
 import com.yellowstone.yellowboardbe.dto.response.board.PostBoardResponseDto;
 import com.yellowstone.yellowboardbe.dto.response.board.PutFavoriteResponseDto;
 import com.yellowstone.yellowboardbe.entity.BoardEntity;
@@ -13,6 +14,7 @@ import com.yellowstone.yellowboardbe.repository.FavoriteRepository;
 import com.yellowstone.yellowboardbe.repository.ImageRepository;
 import com.yellowstone.yellowboardbe.repository.UserRepository;
 import com.yellowstone.yellowboardbe.repository.resultSet.GetBoardResultSet;
+import com.yellowstone.yellowboardbe.repository.resultSet.GetFavoriteListResultSet;
 import com.yellowstone.yellowboardbe.service.impl.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -51,6 +53,22 @@ public class BoardServiceImpl implements BoardService {
             return ResponseDto.databaseError();
         }
         return GetBoardResponseDto.success(resultSet, imageEntities);
+    }
+
+    @Override
+    public ResponseEntity<? super GetFavoriteListResponseDto> getFavoriteList(Integer boardNumber) {
+        List<GetFavoriteListResultSet> resultSets = new ArrayList<>();
+
+        try {
+            boolean existedBoard = boardRepository.existsByBoardNumber(boardNumber);
+            if(!existedBoard) return GetFavoriteListResponseDto.noExistBoard();
+
+            resultSets = favoriteRepository.getFavoriteList(boardNumber);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            ResponseDto.databaseError();
+        }
+        return GetFavoriteListResponseDto.success(resultSets);
     }
 
     @Override

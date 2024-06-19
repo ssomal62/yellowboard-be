@@ -1,5 +1,6 @@
 package com.yellowstone.yellowboardbe.entity;
 
+import com.yellowstone.yellowboardbe.dto.request.board.PatchBoardRequestDto;
 import com.yellowstone.yellowboardbe.dto.request.board.PostBoardRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -52,11 +53,16 @@ public class BoardEntity {
     public void decreaseFavoriteCount() {
         this.favoriteCount--;
     }
-
     public void increaseCommentCount() {
         this.commentCount++;
     }
     public void decreaseCommentCount() {
         this.commentCount--;
     }
+
+    public void patchBoard(PatchBoardRequestDto dto) {
+        this.title = dto.getTitle();
+        this.content = dto.getContent();
+    }
+
 }

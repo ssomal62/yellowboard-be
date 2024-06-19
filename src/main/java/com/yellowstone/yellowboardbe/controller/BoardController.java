@@ -1,5 +1,6 @@
 package com.yellowstone.yellowboardbe.controller;
 
+import com.yellowstone.yellowboardbe.dto.request.board.PatchBoardRequestDto;
 import com.yellowstone.yellowboardbe.dto.request.board.PostBoardRequestDto;
 import com.yellowstone.yellowboardbe.dto.request.board.PostCommentRequestDto;
 import com.yellowstone.yellowboardbe.dto.response.board.*;
@@ -73,6 +74,16 @@ public class BoardController {
             @AuthenticationPrincipal String email
     ) {
         ResponseEntity<? super PutFavoriteResponseDto> response = boardService.putFavorite(boardNumber, email);
+        return response;
+    }
+
+    @PatchMapping("/{boardNumber}")
+    public ResponseEntity<? super PatchBoardResponseDto> patchBoard(
+            @RequestBody @Valid PatchBoardRequestDto requestBody,
+            @PathVariable("boardNumber") Integer boardNumber,
+            @AuthenticationPrincipal String email
+            ) {
+        ResponseEntity<? super PatchBoardResponseDto> response = boardService.patchBoard(requestBody, boardNumber, email);
         return response;
     }
 

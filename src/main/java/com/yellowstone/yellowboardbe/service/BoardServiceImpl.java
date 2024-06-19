@@ -1,6 +1,7 @@
 package com.yellowstone.yellowboardbe.service;
 
 import com.yellowstone.yellowboardbe.dto.ResponseDto;
+import com.yellowstone.yellowboardbe.dto.request.board.PatchBoardRequestDto;
 import com.yellowstone.yellowboardbe.dto.request.board.PostBoardRequestDto;
 import com.yellowstone.yellowboardbe.dto.request.board.PostCommentRequestDto;
 import com.yellowstone.yellowboardbe.dto.response.board.*;
@@ -108,6 +109,41 @@ public class BoardServiceImpl implements BoardService {
             return ResponseDto.databaseError();
         }
         return PostBoardResponseDto.success();
+    }
+
+    @Override
+    public ResponseEntity<? super PatchBoardResponseDto> patchBoard(PatchBoardRequestDto dto, Integer boardNumber, String email) {
+        try {
+            boolean existedUser = userRepository.existsByEmail(email);
+            if (!existedUser) return DeleteBoardResponseDto.noExistUser();
+
+            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            if (boardEntity == null) return DeleteBoardResponseDto.noExistBoard();
+
+            String writerEmail = boardEntity.getWriterEmail();
+            boolean isWriter = writerEmail.equals(email);
+            if (!isWriter) return DeleteBoardResponseDto.noPermission();
+
+            boardEntity.patchBoard(dto);
+            boardRepository.save(boardEntity);
+
+            imageRepository.deleteByBoardNumber(boardNumber);
+            List<String> boardImageList = dto.getBoardImageList();
+            List<ImageEntity> imageEntities = new ArrayList<>();
+
+            for(String newImage: boardImageList) {
+                ImageEntity imageEntity = new ImageEntity(boardNumber, newImage);
+                imageEntities.add(imageEntity);
+            }
+
+            imageRepository.saveAll(imageEntities);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            ResponseDto.databaseError();
+        }
+
+        return PatchBoardResponseDto.success();
     }
 
     @Override

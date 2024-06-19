@@ -5,10 +5,7 @@ import com.yellowstone.yellowboardbe.dto.request.board.PatchBoardRequestDto;
 import com.yellowstone.yellowboardbe.dto.request.board.PostBoardRequestDto;
 import com.yellowstone.yellowboardbe.dto.request.board.PostCommentRequestDto;
 import com.yellowstone.yellowboardbe.dto.response.board.*;
-import com.yellowstone.yellowboardbe.entity.BoardEntity;
-import com.yellowstone.yellowboardbe.entity.CommentEntity;
-import com.yellowstone.yellowboardbe.entity.FavoriteEntity;
-import com.yellowstone.yellowboardbe.entity.ImageEntity;
+import com.yellowstone.yellowboardbe.entity.*;
 import com.yellowstone.yellowboardbe.repository.*;
 import com.yellowstone.yellowboardbe.repository.resultSet.GetBoardResultSet;
 import com.yellowstone.yellowboardbe.repository.resultSet.GetCommentListResultSet;
@@ -30,6 +27,7 @@ public class BoardServiceImpl implements BoardService {
     private final FavoriteRepository favoriteRepository;
     private final ImageRepository imageRepository;
     private final UserRepository userRepository;
+    private final BoardListViewRepository boardListViewRepository;
 
 
     @Override
@@ -48,6 +46,22 @@ public class BoardServiceImpl implements BoardService {
             return ResponseDto.databaseError();
         }
         return GetBoardResponseDto.success(resultSet, imageEntities);
+    }
+
+    @Override
+    public ResponseEntity<? super GetLatestBoardListResponseDto> getLatestBoardList() {
+
+        List<BoardListViewEntity> boardListViewEntities = new ArrayList<>();
+
+        try {
+
+            boardListViewEntities = boardListViewRepository.findByOrderByWriteDatetimeDesc();
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+        return GetLatestBoardListResponseDto.success(boardListViewEntities);
     }
 
     @Override

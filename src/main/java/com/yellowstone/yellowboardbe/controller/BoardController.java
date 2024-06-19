@@ -58,6 +58,12 @@ public class BoardController {
         return response;
     }
 
+    @GetMapping("/latest-list")
+    public ResponseEntity<? super GetLatestBoardListResponseDto> getLatestBoardList() {
+        ResponseEntity<? super GetLatestBoardListResponseDto> response = boardService.getLatestBoardList();
+        return response;
+    }
+
     @PostMapping("/{boardNumber}/comment")
     public ResponseEntity<? super PostCommentResponseDto> postCommnet(
             @RequestBody @Valid PostCommentRequestDto requestBody,

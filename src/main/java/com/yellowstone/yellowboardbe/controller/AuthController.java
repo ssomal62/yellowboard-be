@@ -4,7 +4,7 @@ import com.yellowstone.yellowboardbe.dto.request.auth.SignInRequestDto;
 import com.yellowstone.yellowboardbe.dto.request.auth.SignUpRequestDto;
 import com.yellowstone.yellowboardbe.dto.response.auth.SignInResponseDto;
 import com.yellowstone.yellowboardbe.dto.response.auth.SignUpResponseDto;
-import com.yellowstone.yellowboardbe.service.impl.AuthService;
+import com.yellowstone.yellowboardbe.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

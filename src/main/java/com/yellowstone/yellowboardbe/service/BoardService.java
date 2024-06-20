@@ -1,4 +1,4 @@
-package com.yellowstone.yellowboardbe.service.impl;
+package com.yellowstone.yellowboardbe.service;
 
 import com.yellowstone.yellowboardbe.dto.request.board.PatchBoardRequestDto;
 import com.yellowstone.yellowboardbe.dto.request.board.PostBoardRequestDto;

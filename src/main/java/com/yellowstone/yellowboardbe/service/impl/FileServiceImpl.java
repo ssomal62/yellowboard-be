@@ -1,6 +1,6 @@
-package com.yellowstone.yellowboardbe.service;
+package com.yellowstone.yellowboardbe.service.impl;
 
-import com.yellowstone.yellowboardbe.service.impl.FileService;
+import com.yellowstone.yellowboardbe.service.FileService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;

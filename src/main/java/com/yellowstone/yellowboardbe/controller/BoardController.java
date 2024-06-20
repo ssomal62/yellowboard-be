@@ -25,6 +25,26 @@ public class BoardController {
         return reponse;
     }
 
+    @GetMapping("/{boardNumber}/increase-view-count")
+    public ResponseEntity<? super IncreaseViewCountResponseDto> increaseViewCount(
+            @PathVariable("boardNumber") Integer boardNumber
+    ) {
+        ResponseEntity<? super IncreaseViewCountResponseDto> response = boardService.increaseViewCount(boardNumber);
+        return response;
+    }
+
+    @GetMapping("/latest-list")
+    public ResponseEntity<? super GetLatestBoardListResponseDto> getLatestBoardList() {
+        ResponseEntity<? super GetLatestBoardListResponseDto> response = boardService.getLatestBoardList();
+        return response;
+    }
+
+    @GetMapping("/top3")
+    public ResponseEntity<? super GetTop3BoardListResponseDto> getTop3BoardList() {
+        ResponseEntity<? super GetTop3BoardListResponseDto> response = boardService.getTop3BoardList();
+        return response;
+    }
+
     @GetMapping("/{boardNumber}/favorite-list")
     public ResponseEntity<? super GetFavoriteListResponseDto> getFavoriteList(
             @PathVariable("boardNumber") Integer boardNumber
@@ -47,20 +67,6 @@ public class BoardController {
             @AuthenticationPrincipal String email
             ) {
         ResponseEntity<? super PostBoardResponseDto> response = boardService.postBoard(requestBody, email);
-        return response;
-    }
-
-    @GetMapping("/{boardNumber}/increase-view-count")
-    public ResponseEntity<? super IncreaseViewCountResponseDto> increaseViewCount(
-            @PathVariable("boardNumber") Integer boardNumber
-    ) {
-        ResponseEntity<? super IncreaseViewCountResponseDto> response = boardService.increaseViewCount(boardNumber);
-        return response;
-    }
-
-    @GetMapping("/latest-list")
-    public ResponseEntity<? super GetLatestBoardListResponseDto> getLatestBoardList() {
-        ResponseEntity<? super GetLatestBoardListResponseDto> response = boardService.getLatestBoardList();
         return response;
     }
 

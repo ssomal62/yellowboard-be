@@ -1,7 +1,7 @@
 package com.yellowstone.yellowboardbe.controller;
 
 import com.yellowstone.yellowboardbe.dto.response.user.GetSignInUserResponseDto;
-import com.yellowstone.yellowboardbe.service.impl.UserService;
+import com.yellowstone.yellowboardbe.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

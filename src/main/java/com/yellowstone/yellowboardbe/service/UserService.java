@@ -1,4 +1,4 @@
-package com.yellowstone.yellowboardbe.service.impl;
+package com.yellowstone.yellowboardbe.service;
 
 import com.yellowstone.yellowboardbe.dto.response.user.GetSignInUserResponseDto;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.yellowstone.yellowboardbe.service.impl;
+package com.yellowstone.yellowboardbe.service;
 
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;

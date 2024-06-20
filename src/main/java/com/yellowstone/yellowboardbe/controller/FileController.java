@@ -1,6 +1,6 @@
 package com.yellowstone.yellowboardbe.controller;
 
-import com.yellowstone.yellowboardbe.service.impl.FileService;
+import com.yellowstone.yellowboardbe.service.FileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;

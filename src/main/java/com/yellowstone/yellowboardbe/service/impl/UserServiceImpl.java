@@ -1,10 +1,10 @@
-package com.yellowstone.yellowboardbe.service;
+package com.yellowstone.yellowboardbe.service.impl;
 
 import com.yellowstone.yellowboardbe.dto.ResponseDto;
 import com.yellowstone.yellowboardbe.dto.response.user.GetSignInUserResponseDto;
 import com.yellowstone.yellowboardbe.entity.UserEntity;
 import com.yellowstone.yellowboardbe.repository.UserRepository;
-import com.yellowstone.yellowboardbe.service.impl.UserService;
+import com.yellowstone.yellowboardbe.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

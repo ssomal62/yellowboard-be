@@ -1,4 +1,4 @@
-package com.yellowstone.yellowboardbe.service;
+package com.yellowstone.yellowboardbe.service.impl;
 
 import com.yellowstone.yellowboardbe.dto.ResponseDto;
 import com.yellowstone.yellowboardbe.dto.request.auth.SignInRequestDto;
@@ -8,7 +8,7 @@ import com.yellowstone.yellowboardbe.dto.response.auth.SignUpResponseDto;
 import com.yellowstone.yellowboardbe.entity.UserEntity;
 import com.yellowstone.yellowboardbe.provider.JwtProvider;
 import com.yellowstone.yellowboardbe.repository.UserRepository;
-import com.yellowstone.yellowboardbe.service.impl.AuthService;
+import com.yellowstone.yellowboardbe.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

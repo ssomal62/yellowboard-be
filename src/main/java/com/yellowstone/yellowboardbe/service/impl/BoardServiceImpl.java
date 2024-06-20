@@ -1,4 +1,4 @@
-package com.yellowstone.yellowboardbe.service;
+package com.yellowstone.yellowboardbe.service.impl;
 
 import com.yellowstone.yellowboardbe.dto.ResponseDto;
 import com.yellowstone.yellowboardbe.dto.request.board.PatchBoardRequestDto;
@@ -10,7 +10,7 @@ import com.yellowstone.yellowboardbe.repository.*;
 import com.yellowstone.yellowboardbe.repository.resultSet.GetBoardResultSet;
 import com.yellowstone.yellowboardbe.repository.resultSet.GetCommentListResultSet;
 import com.yellowstone.yellowboardbe.repository.resultSet.GetFavoriteListResultSet;
-import com.yellowstone.yellowboardbe.service.impl.BoardService;
+import com.yellowstone.yellowboardbe.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

@@ -4,7 +4,7 @@ import com.yellowstone.yellowboardbe.dto.request.board.PatchBoardRequestDto;
 import com.yellowstone.yellowboardbe.dto.request.board.PostBoardRequestDto;
 import com.yellowstone.yellowboardbe.dto.request.board.PostCommentRequestDto;
 import com.yellowstone.yellowboardbe.dto.response.board.*;
-import com.yellowstone.yellowboardbe.service.impl.BoardService;
+import com.yellowstone.yellowboardbe.service.BoardService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

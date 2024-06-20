@@ -31,6 +31,7 @@ public class BoardServiceImpl implements BoardService {
     private final FavoriteRepository favoriteRepository;
     private final ImageRepository imageRepository;
     private final UserRepository userRepository;
+    private final SearchLogRepository searchLogRepository;
     private final BoardListViewRepository boardListViewRepository;
 
 
@@ -97,13 +98,20 @@ public class BoardServiceImpl implements BoardService {
 
         try {
             boardListViewEntities = boardListViewRepository.findByTitleContainsOrContentContainsOrderByWriteDatetimeDesc(searchWord, searchWord);
+            SearchLogEntity searchLogEntity = new SearchLogEntity(searchWord, preSearchWord, false);
+            searchLogRepository.save(searchLogEntity);
+
             boolean relation = preSearchWord != null;
+            if(relation) {
+                searchLogEntity = new SearchLogEntity( preSearchWord, searchWord, relation);
+                searchLogRepository.save(searchLogEntity);
+            }
 
         } catch (Exception exception) {
             exception.printStackTrace();
             ResponseDto.databaseError();
         }
-        return null;
+        return GetSearchBoardListResponseDto.success(boardListViewEntities);
     }
 
 

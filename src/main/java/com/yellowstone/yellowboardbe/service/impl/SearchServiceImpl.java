@@ -2,8 +2,10 @@ package com.yellowstone.yellowboardbe.service.impl;
 
 import com.yellowstone.yellowboardbe.dto.ResponseDto;
 import com.yellowstone.yellowboardbe.dto.response.search.GetPopularListResponseDto;
+import com.yellowstone.yellowboardbe.dto.response.search.GetRelationListResponseDto;
 import com.yellowstone.yellowboardbe.repository.SearchLogRepository;
 import com.yellowstone.yellowboardbe.repository.resultSet.GetPopularListResultSet;
+import com.yellowstone.yellowboardbe.repository.resultSet.GetRelationListResultSet;
 import com.yellowstone.yellowboardbe.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,5 +31,19 @@ public class SearchServiceImpl implements SearchService {
             ResponseDto.databaseError();
         }
         return GetPopularListResponseDto.success(resultSets);
+    }
+
+    @Override
+    public ResponseEntity<? super GetRelationListResponseDto> getRelationList(String searchWord) {
+        List<GetRelationListResultSet> resultSets = new ArrayList<>();
+        try {
+
+        resultSets = searchLogRepository.getRelationList(searchWord);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            ResponseDto.databaseError();
+        }
+        return GetRelationListResponseDto.success(resultSets);
     }
 }

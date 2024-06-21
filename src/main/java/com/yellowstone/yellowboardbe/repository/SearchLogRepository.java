@@ -13,7 +13,7 @@ import java.util.List;
 public interface SearchLogRepository extends JpaRepository<SearchLogEntity, Integer> {
 
     @Query(value =
-            "SELECT search_word, count(search_word) AS count " +
+            "SELECT search_word AS searchWord, count(search_word) AS count " +
                     "FROM search_log " +
                     "WHERE relation IS FALSE " +
                     "GROUP BY search_word " +
